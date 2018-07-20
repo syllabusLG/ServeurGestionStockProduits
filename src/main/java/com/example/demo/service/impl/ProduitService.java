@@ -1,4 +1,4 @@
-package com.example.demo.service;
+package com.example.demo.service.impl;
 
 import java.util.List;
 
@@ -8,31 +8,32 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.dao.ProduitRepository;
 import com.example.demo.entity.Produit;
+import com.example.demo.service.ICrudService;
 
 @Service
 @Primary
-public class ProduitService implements IProduitService{
+public class ProduitService implements ICrudService<Produit, Long>{
 
 	@Autowired
 	private ProduitRepository produitRepository;
 	@Override
-	public List<Produit> getProduits() {
+	public List<Produit> getAll() {
 		return produitRepository.findAll();
 	}
 
 	@Override
-	public void addProduit(Produit produit) {
+	public void add(Produit produit) {
 		produitRepository.save(produit);	
 	}
 
 	@Override
-	public void updateProduit(Produit produit) {
+	public void update(Produit produit) {
 		produitRepository.save(produit);
 		
 	}
 
 	@Override
-	public void deleteProduit(Long id) {
+	public void delete(Long id) {
 		Produit produit = new Produit();
 		produit.setId(id);
 		produitRepository.delete(produit);

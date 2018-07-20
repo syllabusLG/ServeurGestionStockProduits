@@ -12,30 +12,30 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.entity.Produit;
+import com.example.demo.entity.User;
 import com.example.demo.service.ICrudService;
 
 @RestController
-@RequestMapping(value="/api/produit")
-public class ProduitController {
+@RequestMapping(value="/crud_user")
+public class CrudUserController {
 
 	@Autowired
-	private ICrudService<Produit, Long> produitService;
+	private ICrudService<User, Long> crudUserService;
 	
 	@GetMapping
-	public List<Produit> getProduits(){
-		return produitService.getAll();
+	public List<User> getUsers(){
+		return crudUserService.getAll();
 	}
 	@PostMapping
-	public void addProduit(@RequestBody Produit produit) {
-		produitService.add(produit);
+	public void addUser(@RequestBody User user) {
+		crudUserService.add(user);
 	}
 	@PutMapping
-	public void updateProduit(@RequestBody Produit produit) {
-		produitService.update(produit);
+	public void updateUser(@RequestBody User user) {
+		crudUserService.update(user);
 	}
 	@DeleteMapping("/{id}")
-	public void deleteProduit(@PathVariable Long id) {
-		produitService.delete(id);
+	public void deleteUser(@PathVariable Long id) {
+		crudUserService.delete(id);
 	}
 }
